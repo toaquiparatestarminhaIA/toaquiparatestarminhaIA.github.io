@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Teste de IA</title>
+</head>
+<body>
+	<h1>Teste de IA</h1>
+	<form>
+		<label for="entrada">Digite sua entrada:</label>
+		<input type="text" id="entrada" name="entrada"><br><br>
+		<input type="button" value="Enviar" onclick="enviarEntrada()">
+	</form>
+	<div id="saida"></div>
+</body>
+</html>
+<script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
+<script>
+async function enviarEntrada() {
+  // carregar o modelo de IA
+  const model = await tf.loadLayersModel('https://raw.githubusercontent.com/seu-usuario/seu-repositorio/master/modelo/model.json');
+
+  // obter a entrada do usuário
+  const entrada = document.getElementById('entrada').value;
+
+  // converter a entrada em um tensor
+  const tensorEntrada = tf.tensor1d([entrada]);
+
+  // executar o modelo de IA na entrada
+  const tensorSaida = model.predict(tensorEntrada);
+
+  // obter a saída do modelo
+  const saida = tensorSaida.arraySync()[0];
+
+  // exibir a saída na página HTML
+  document.getElementById('saida').innerHTML = 'Saída: ' + saida;
+
+  // liberar os tensores
+  tensorEntrada.dispose();
+  tensorSaida.dispose();
+}
+</script>
