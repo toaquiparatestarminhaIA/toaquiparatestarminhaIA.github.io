@@ -19,7 +19,7 @@ async function enviarEntrada(event) {
   event.preventDefault(); // prevenir o envio do formulário
 
   // carregar o modelo de IA
-    const model = await tf.loadLayersModel('https://raw.githubusercontent.com/toaquiparatestarminhaIA/toaquiparatestarminhaIA.github.io/master/modelo/model.json');
+    const model = await tf.loadLayersModel('https://github.com/toaquiparatestarminhaIA/toaquiparatestarminhaIA.github.io');
 
   // obter a entrada do usuário
   const entrada = document.getElementById('entrada').value;
