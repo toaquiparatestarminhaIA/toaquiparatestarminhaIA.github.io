@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
 	<title>Teste de IA</title>
@@ -15,30 +15,29 @@
 </html>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
 <script>
-async function enviarEntrada(event) {
-  event.preventDefault(); // prevenir o envio do formulário
+	async function enviarEntrada(event) {
+		event.preventDefault(); // prevenir o envio do formulário
 
-  // carregar o modelo de IA
-    const model = await tf.loadLayersModel('https://github.com/toaquiparatestarminhaIA/toaquiparatestarminhaIA.github.io');
+		// carregar o modelo de IA
+		const model = await tf.loadLayersModel('https://toaquiparatestarminhaIA.github.io/modelo/model.json');
 
-  // obter a entrada do usuário
-  const entrada = document.getElementById('entrada').value;
+		// obter a entrada do usuário
+		const entrada = document.getElementById('entrada').value;
 
-  // converter a entrada em um tensor
-  const tensorEntrada = tf.tensor1d([entrada]);
+		// converter a entrada em um tensor
+		const tensorEntrada = tf.tensor1d([entrada]);
 
-  // executar o modelo de IA na entrada
-  const tensorSaida = model.predict(tensorEntrada);
+		// executar o modelo de IA na entrada
+		const tensorSaida = model.predict(tensorEntrada);
 
-  // obter a saída do modelo
-  const saida = tensorSaida.arraySync()[0];
+		// obter a saída do modelo
+		const saida = tensorSaida.arraySync()[0];
 
-  // exibir a saída na página HTML
-  document.getElementById('saida').innerHTML = 'Saída: ' + saida;
+		// exibir a saída na página HTML
+		document.getElementById('saida').innerHTML = 'Saída: ' + saida;
 
-  // liberar os tensores
-  tensorEntrada.dispose();
-  tensorSaida.dispose();
-}
+		// liberar os tensores
+		tensorEntrada.dispose();
+		tensorSaida.dispose();
+	}
 </script>
-
