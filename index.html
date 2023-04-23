@@ -1,23 +1,25 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html>
 <head>
 	<title>Teste de IA</title>
 </head>
 <body>
 	<h1>Teste de IA</h1>
-	<form>
+	<form onsubmit="return enviarEntrada(event)">
 		<label for="entrada">Digite sua entrada:</label>
 		<input type="text" id="entrada" name="entrada"><br><br>
-		<input type="button" value="Enviar" onclick="enviarEntrada()">
+		<input type="submit" value="Enviar">
 	</form>
 	<div id="saida"></div>
 </body>
 </html>
 <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@3.11.0/dist/tf.min.js"></script>
 <script>
-async function enviarEntrada() {
+async function enviarEntrada(event) {
+  event.preventDefault(); // prevenir o envio do formulário
+
   // carregar o modelo de IA
-  const model = await tf.loadLayersModel('https://raw.githubusercontent.com/seu-usuario/seu-repositorio/master/modelo/model.json');
+    const model = await tf.loadLayersModel('https://raw.githubusercontent.com/toaquiparatestarminhaIA/toaquiparatestarminhaIA.github.io/master/modelo/model.json');
 
   // obter a entrada do usuário
   const entrada = document.getElementById('entrada').value;
@@ -39,3 +41,4 @@ async function enviarEntrada() {
   tensorSaida.dispose();
 }
 </script>
+
